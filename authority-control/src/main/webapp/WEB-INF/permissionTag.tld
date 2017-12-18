@@ -1,0 +1,29 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"  
+    version="2.0">  
+    <tlib-version>2.0</tlib-version>  
+      
+    <short-name>permission</short-name>  
+    <uri>http://www.extlight.com</uri>  
+      
+    <tag>  
+        <name>each</name>  
+        <tag-class>com.light.ac.web.tag.PermissionTag</tag-class>  
+        <body-content>scriptless</body-content>  
+        <attribute>
+            <name>items</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>  
+</taglib>    

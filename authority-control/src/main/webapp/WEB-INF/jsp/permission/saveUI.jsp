@@ -18,7 +18,7 @@
 		<!-- /.page-header -->
 		<div class="row">
 			<div class="col-xs-12">
-				<form id="save-form" class="form-horizontal" role="form" action="/role/save" method="post">
+				<form id="save-form" class="form-horizontal" role="form" action="/permission/save" method="post">
 					<input type="hidden" name="id" value="${permission.id}" />
 					<div class="form-group">
 						<label class="col-sm-3 control-label no-padding-right"
@@ -31,7 +31,7 @@
 						<label class="col-sm-3 control-label no-padding-right"
 							for="form-field-1">父级名称</label>
 						<div class="col-sm-9">
-							<select class="col-xs-10 col-sm-8" name="pid">
+							<select class="col-xs-10 col-sm-8" name="pid" id="pid">
 								<option value="0"></option>
 								<c:forEach var="p" items="${parentList }">
 									<option value="${p.id}" ${permission.pid == p.id ? 'selected':'' }>${p.name }</option>
@@ -43,7 +43,11 @@
 						<label class="col-sm-3 control-label no-padding-right"
 							for="form-field-1">权限类型</label>
 						<div class="col-sm-9">
-							<input type="text" id="type" name="type" value="${permission.type }" class="col-xs-10 col-sm-8" />
+							<select class="col-xs-10 col-sm-8" name="type" id="type">
+								<option value="1" ${permission.type == 1 ? 'selected':'' }>目录</option>
+								<option value="2" ${permission.type == 2 ? 'selected':'' }>菜单</option>
+								<option value="3" ${permission.type == 3 ? 'selected':'' }>按钮</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group">

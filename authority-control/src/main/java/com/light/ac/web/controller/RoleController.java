@@ -33,8 +33,8 @@ public class RoleController {
 	@RequirePermission("role:listUI")
 	@RequestMapping("list")
 	@ResponseBody
-	public Result list(int offset, int limit,String name) {
-		PageInfo<Role> pageInfo = this.roleService.getListByPage(offset / limit + 1, limit, name);
+	public Result list(int offset, int limit,String search) {
+		PageInfo<Role> pageInfo = this.roleService.getListByPage(offset / limit + 1, limit, search);
 		return Result.succeed(pageInfo);
 	}
 	
@@ -74,10 +74,15 @@ public class RoleController {
 	
 	
 	@RequirePermission("role:delete")
-	@RequestMapping("delete/{id}")
+	@RequestMapping("delete/{ids}")
 	@ResponseBody
-	public Result delete(@PathVariable("id") int id) {
-		this.roleService.deleteById(id);
+	public Result delete(@PathVariable("ids") String ids) {
+		String[] idsStr = ids.split(",");
+		if (idsStr.length == 1) {
+			this.roleService.deleteById(Integer.parseInt(idsStr[0]));
+		} else {
+			this.roleService.deleteBatchByIds(idsStr);
+		}
 		return Result.succeed();
 	}
 	

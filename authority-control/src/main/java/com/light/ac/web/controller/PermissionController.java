@@ -33,8 +33,8 @@ public class PermissionController {
 	@RequirePermission("permission:listUI")
 	@RequestMapping("list")
 	@ResponseBody
-	public Result list(int offset, int limit,String name) {
-		PageInfo<Permission> pageInfo = this.permissionService.getListByPage(offset / limit + 1, limit, name);
+	public Result list(int offset, int limit,String search) {
+		PageInfo<Permission> pageInfo = this.permissionService.getListByPage(offset / limit + 1, limit, search);
 		return Result.succeed(pageInfo);
 	}
 	

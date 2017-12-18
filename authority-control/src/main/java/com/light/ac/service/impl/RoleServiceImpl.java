@@ -1,5 +1,6 @@
 package com.light.ac.service.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 		
 		Example cond = new Example(Role.class);
         if (!StringUtils.isEmpty(name)) {
+        	try {
+				name = new String(name.getBytes("iso8859-1"),"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
             cond.createCriteria().andLike("name",name);
         }
 		
@@ -78,6 +84,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 		}
 		
 		return roleList;
+	}
+
+	@Override
+	public void deleteBatchByIds(String[] idsStr) {
+		this.roleMapper.deleteBatchByIds(idsStr);
 	}
 
 

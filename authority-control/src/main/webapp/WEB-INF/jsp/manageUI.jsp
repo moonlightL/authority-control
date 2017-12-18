@@ -4,7 +4,7 @@
 <html lang="zh">
 	<head>
 		<meta charset="utf-8" />
-		<title>收件箱界面 - Bootstrap后台管理系统模版Ace下载</title>
+		<title>权限管理系统</title>
 		<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
 		<meta name="description" content="站长素材提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />

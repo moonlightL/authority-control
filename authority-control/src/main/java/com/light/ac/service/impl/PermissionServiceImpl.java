@@ -1,6 +1,7 @@
 package com.light.ac.service.impl;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -86,6 +87,11 @@ public class PermissionServiceImpl extends BaseServiceImpl<Permission>
 		
 		Example cond = new Example(Permission.class);
         if (!StringUtils.isEmpty(name)) {
+        	try {
+				name = new String(name.getBytes("iso8859-1"),"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
             cond.createCriteria().andLike("name",name);
         }
 		
@@ -105,7 +111,7 @@ public class PermissionServiceImpl extends BaseServiceImpl<Permission>
 					throw new RuntimeException("该权限包含子权限，不能删除!如要删除，请将子权限删除再进行操作");
 				}
 			}
-			this.deleteById(id);
+			this.getMapper().deleteByPrimaryKey(id);
 		}
 	}
 

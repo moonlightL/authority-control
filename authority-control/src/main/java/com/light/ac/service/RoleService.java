@@ -13,4 +13,6 @@ public interface RoleService extends BaseService<Role>{
 
 	List<Role> getRoleListByUserId(int userId);
 
+	void deleteBatchByIds(String[] idsStr);
+
 }

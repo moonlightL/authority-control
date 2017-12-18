@@ -17,4 +17,6 @@ public interface RoleMapper extends Mapper<Role>{
 
 	List<Role> getRoleListByUserId(int userId);
 
+	void deleteBatchByIds(@Param("ids")String[] idsStr);
+
 }

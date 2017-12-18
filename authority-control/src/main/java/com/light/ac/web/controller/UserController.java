@@ -37,8 +37,9 @@ public class UserController {
 	@RequirePermission("user:listUI")
 	@RequestMapping("list")
 	@ResponseBody
-	public Result list(int offset, int limit,String name) {
-		PageInfo<User> pageInfo = this.userService.getListByPage(offset / limit + 1, limit, name);
+	public Result list(int offset, int limit,String search) {
+		
+		PageInfo<User> pageInfo = this.userService.getListByPage(offset / limit + 1, limit, search);
 		return Result.succeed(pageInfo);
 	}
 	

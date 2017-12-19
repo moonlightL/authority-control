@@ -3,11 +3,11 @@
 本套系统基于 RBAC 模型进行开发的简易权限管理。
 
 ### 后端
-springmvc + spring + mybatis 
+springmvc4.3.7 + spring4.3.7 + mybatis3.4.2
 
 ### 前端
 
-jsp + ace 主题管理模板
+jsp + ace 主题管理模板 + jQuery + Layer + Bootstrap-Table
 
 ### 数据库
 

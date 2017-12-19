@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.light.ac.mapper.RoleMapper">
+
+	<delete id="deleteRolePermissionByRoleId" parameterType="int">
+		DELETE FROM 
+			t_role_permission 
+		WHERE 
+			role_id = #{roleId}
+	</delete>
+
+	<insert id="saveRolePermission">
+		INSERT INTO 
+			t_role_permission(role_id,permission_id) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.roleId},#{item.permissionId})
+		</foreach>
+	</insert>
+	
+	<select id="getRoleListByUserId" parameterType="int" resultType="Role">
+		SELECT
+			role_id as id
+		FROM
+			t_user_role
+		WHERE
+			user_id = #{userId}
+	</select>
+	
+	<delete id="deleteBatchByIds">
+		DELETE FROM
+			t_role
+		WHERE 
+			role_id 
+		IN
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>

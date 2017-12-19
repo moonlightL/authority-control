@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.light.ac.mapper.PermissionMapper">
+
+	<resultMap id="permissionMap" type="com.light.ac.domain.Permission">
+		<id property="id" column="permission_id"></id>
+		<result property="name" column="name"></result>
+		<result property="pid" column="pid"></result>
+		<result property="parentName" column="parent_name"></result>
+		<result property="url" column="url"></result>
+		<result property="code" column="code"></result>
+		<result property="type" column="type"></result>
+		<collection property="children" column="permission_id" select="com.light.ac.mapper.PermissionMapper.getChildrenByParentId"></collection>
+	</resultMap>
+	
+	<select id="getPermissionList" parameterType="Integer" resultType="Permission">
+		SELECT 
+			p.permission_id as id,
+			p.name,
+			p.url,
+			p.sort,
+			p.type,
+			p.pid,
+			p.code,
+			p.color,
+			p.icon
+		FROM 
+			t_permission p
+		INNER JOIN
+			t_role_permission rp ON p.permission_id = rp.permission_id
+		INNER JOIN 
+			t_user_role ur ON rp.role_id = ur.role_id
+		WHERE 
+			ur.user_id = #{userId}
+		ORDER BY 
+			p.pid ASC,p.sort ASC;
+	</select>
+
+	<select id="getChildrenCount" parameterType="Integer" resultType="Integer">
+		SELECT
+			count(*)
+		FROM
+			t_permission
+		WHERE 
+			pid = #{id}
+	</select>
+	
+	<select id="getChildrenByParentId" parameterType="Integer" resultType="Permission">
+		SELECT
+			p.permission_id as id,
+			p.name,
+			p.url,
+			p.sort,
+			p.type,
+			p.pid,
+			p.code,
+			p.color,
+			p.icon
+		FROM
+			t_permission p
+		WHERE 
+			p.pid = #{id}
+	</select>
+	
+	<!-- 获取目录类型权限，再关联查询菜单类型  -->
+	<select id="getPermissionWithoutButton" resultMap="permissionMap">
+		SELECT
+			p.permission_id,
+			p.name
+		FROM
+			t_permission p
+		WHERE
+			p.type = 1
+	</select>
+	
+	<select id="getPermissionListByRoleId" parameterType="int" resultType="Permission">
+		SELECT
+			permission_id as id
+		FROM
+			t_role_permission
+		WHERE
+			role_id = #{roleId}
+	</select>
+</mapper>

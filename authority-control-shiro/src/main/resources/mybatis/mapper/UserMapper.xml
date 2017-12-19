@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.light.ac.mapper.UserMapper">
+
+	<select id="getUserByUserName" parameterType="String" resultType="User">
+		SELECT 
+			user_id as id,user_name,password,email,phone,salt 
+		FROM 
+			t_user 
+		WHERE 
+			user_name = #{userName}
+	</select>
+
+	<delete id="deleteBatchByIds">
+		DELETE FROM
+			t_user
+		WHERE 
+			user_id 
+		IN
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteUserRoleByUserId" parameterType="int">
+		DELETE FROM
+			t_user_role 
+		WHERE
+			user_id = #{userId}
+	</delete>
+	
+	<insert id="saveUserRole">
+		insert into t_user_role(user_id,role_id) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.userId},#{item.roleId})
+		</foreach>
+	</insert>
+</mapper>

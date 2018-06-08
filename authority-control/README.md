@@ -28,7 +28,7 @@ MySQL5.6
 
 4) 运行项目，浏览器访问 <http://localhost:8080>，账号和密码都为 admin。　
 
-补充：db.properties 中 mysql 用户名和密码进行 DES 加密， demo 用的 mysql 明文用户名：root 密码：tiger
+补充：db.properties 中 mysql 用户名和密码进行 DES 加密， 其明文用户名：root 密码：tiger
 
 ## 效果图
 

@@ -28,6 +28,8 @@ MySQL5.6
 
 4) 运行项目，浏览器访问 <http://localhost:8080>，账号和密码都为 admin。　
 
+补充：测试用的 mysql 用户名：root 密码：tiger
+
 ## 效果图
 
 ![](http://images.extlight.com/authority-control-01.jpg)

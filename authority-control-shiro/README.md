@@ -30,6 +30,8 @@ MySQL5.6
 
 补充：db.properties 中 mysql 用户名和密码进行 DES 加密， 其明文用户名：root 密码：tiger
 
+**如果数据库账号和密码与项目不一致，找到项目中的 DESUtil 类，加密自己本地数据库的 账号和密码，将密文替换到 db.properties 对应的配置中**
+
 ## 效果图
 
 ![](http://images.extlight.com/authority-control-01.jpg)
